@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:body>
+
+    <h1>JSF 2 valueChangeListener example</h1>
+
+    <h:form>
+        <f:event listener="#{country.onLoad}" type="preRenderView" />
+        <h:panelGrid columns="2">
+
+            Selected country :
+            <h:inputText id="country" value="#{country.localeCode}" size="20"/>
+
+            Select a country {ValueChangeListener class}:
+            <h:selectOneMenu value="#{country.country}" onchange="submit()">
+                <f:valueChangeListener type="com.mkyong.CountryValueListener"/>
+                <f:selectItems value="#{country.countryInMap}"/>
+            </h:selectOneMenu>
+
+            Select State
+            <h:selectOneMenu value="#{country.state}">
+                <f:selectItems value="#{country.states}"/>
+            </h:selectOneMenu>
+
+        </h:panelGrid>
+        <h:commandButton value="Submit" action="#{country.submit}"></h:commandButton>
+
+    </h:form>
+
+</h:body>
+</html>
